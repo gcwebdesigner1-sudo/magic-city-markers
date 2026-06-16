@@ -1,729 +1,1176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Magic City Markers | Custom Tattoo Studio — Billings, MT</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Magic City Markers — Billings, MT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --ink:    #0a0a0a;
-      --ink2:   #111111;
-      --ink3:   #181818;
-      --ink4:   #222222;
-      --gold:   #c9a84c;
-      --gold2:  #e2bb65;
-      --gold-g: rgba(201,168,76,0.18);
-      --red:    #b5372a;
-      --border: rgba(255,255,255,0.06);
-      --text:   #ddd;
-      --muted:  #777;
-      --white:  #ffffff;
+      --coal:    #181818;
+      --offWhite:#f0f0f0;
+      --grey:    #b6b6b6;
+      --fair:    #ffdbbf;
+      --brown:   #2d1a0a;
+      --border:  rgba(240,240,240,0.08);
     }
 
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--ink); color: var(--text); overflow-x: hidden; }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--ink2); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
-    /* ── TOPBAR ── */
-    .topbar {
-      background: var(--gold); padding: 9px 5%;
-      display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;
+    body {
+      background: var(--coal);
+      color: var(--offWhite);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1.12px;
+      overflow-x: hidden;
     }
-    .topbar-left { display: flex; gap: 28px; flex-wrap: wrap; }
-    .topbar-item { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: var(--ink); letter-spacing: 0.3px; }
-    .topbar-item i { font-size: 10px; }
-    .topbar-cta { background: var(--ink); color: var(--gold); padding: 5px 16px; border-radius: 100px; font-size: 11px; font-weight: 700; text-decoration: none; letter-spacing: 1px; }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 36px; left: 0; right: 0; z-index: 1000;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%; height: 70px;
-      background: rgba(10,10,10,0.95); backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      transition: top 0.3s;
-    }
-    nav.scrolled { top: 0; }
-    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-    .nav-logo-mark {
-      width: 44px; height: 44px; border: 2px solid var(--gold);
-      border-radius: 10px; display: flex; align-items: center; justify-content: center;
-      font-family: 'Bebas Neue'; font-size: 22px; color: var(--gold); letter-spacing: 2px;
-    }
-    .nav-logo-text .top { font-family: 'Bebas Neue'; font-size: 22px; letter-spacing: 3px; color: var(--white); display: block; line-height: 1.1; }
-    .nav-logo-text .sub { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 600; display: block; }
-    .nav-links { display: flex; gap: 38px; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--muted); font-size: 12.5px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-phone {
-      display: flex; align-items: center; gap: 9px; text-decoration: none;
-      border: 1px solid rgba(201,168,76,0.3); color: var(--gold);
-      padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .nav-phone:hover { background: var(--gold-g); border-color: var(--gold); }
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    ::-webkit-scrollbar { width: 2px; }
+    ::-webkit-scrollbar-track { background: var(--coal); }
+    ::-webkit-scrollbar-thumb { background: #444; }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh; position: relative;
-      display: flex; align-items: center;
-      padding: 110px 5% 80px; overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background:
-        linear-gradient(100deg, rgba(10,10,10,0.96) 40%, rgba(10,10,10,0.7) 100%),
-        url('https://images.unsplash.com/photo-1661714220704-711551e73799?w=1920&q=85&fit=crop') center/cover no-repeat;
-    }
-    .hero-bg::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 65%, var(--ink) 100%);
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 680px; }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25);
-      color: var(--gold); padding: 8px 20px; border-radius: 100px;
-      font-size: 11px; font-weight: 600; letter-spacing: 3px;
-      text-transform: uppercase; margin-bottom: 30px;
-    }
-    .hero h1 {
-      font-family: 'Bebas Neue'; font-size: clamp(62px, 8.5vw, 120px);
-      line-height: 0.9; letter-spacing: 2px; color: var(--white); margin-bottom: 8px;
-    }
-    .hero h1 .script { font-family: 'Playfair Display'; font-style: italic; font-size: 0.52em; color: var(--gold); display: block; letter-spacing: 0; line-height: 1.6; }
-    .hero-desc { font-size: 16px; line-height: 1.8; color: #999; max-width: 480px; margin: 24px 0 40px; }
-    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
-    .btn-gold {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--gold); color: var(--ink); padding: 15px 32px; border-radius: 8px;
-      font-size: 14px; font-weight: 800; text-decoration: none; letter-spacing: 0.5px;
-      transition: background 0.2s, transform 0.15s; box-shadow: 0 4px 24px rgba(201,168,76,0.3);
-    }
-    .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: transparent; color: var(--white); padding: 15px 28px; border-radius: 8px;
-      font-size: 14px; font-weight: 500; text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.15); transition: border-color 0.2s, background 0.2s;
-    }
-    .btn-outline:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.04); }
-    .hero-badges {
-      display: flex; gap: 20px; margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--border); flex-wrap: wrap;
-    }
-    .hero-badge-item { text-align: center; }
-    .hero-badge-num { font-family: 'Bebas Neue'; font-size: 40px; color: var(--white); letter-spacing: 1px; line-height: 1; }
-    .hero-badge-num span { color: var(--gold); }
-    .hero-badge-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-top: 3px; font-weight: 500; }
+    a { color: inherit; text-decoration: none; }
 
-    /* ── GOLD STRIP ── */
-    .gold-strip { background: var(--gold); overflow: hidden; white-space: nowrap; padding: 14px 0; }
-    .gold-strip-inner { display: inline-flex; animation: strip 30s linear infinite; }
-    .strip-item { display: inline-flex; align-items: center; gap: 10px; padding: 0 28px; font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--ink); }
-    .strip-dot { width: 5px; height: 5px; background: rgba(10,10,10,0.3); border-radius: 50%; }
-    @keyframes strip { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+    .font-aro { font-family: 'Antonio', sans-serif; }
+    .normal-case { text-transform: none; letter-spacing: normal; }
 
-    /* ── SECTIONS ── */
-    section { padding: 100px 5%; }
-    .section-label { display: inline-flex; align-items: center; gap: 10px; color: var(--gold); font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
-    .section-label::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
-    .section-title { font-family: 'Bebas Neue'; font-size: clamp(38px, 4.5vw, 62px); letter-spacing: 1.5px; color: var(--white); line-height: 1; margin-bottom: 14px; }
-    .section-sub { font-size: 15px; color: var(--muted); line-height: 1.75; max-width: 520px; }
+    .btn-book {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(240,240,240,0.10);
+      border: 1px solid rgb(240,240,240);
+      border-radius: 6px;
+      padding: 2px 8px;
+      color: var(--offWhite);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      white-space: nowrap;
+    }
+    .btn-book:hover { background: rgba(240,240,240,0.30); }
 
-    /* ── GALLERY ── */
-    #gallery { background: var(--ink2); }
-    .gallery-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 56px; flex-wrap: wrap; }
-    .gallery-grid {
+    #main-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      transition: transform 0.3s ease-in-out;
+    }
+    .header-gradient {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 208px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.30) 40%, transparent 100%);
+      pointer-events: none;
+    }
+    .header-desktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 28px 0;
+      position: relative;
+    }
+    .header-logo-spacer { visibility: hidden; }
+    .header-logo-spacer, .header-logo-text { width: 200px; }
+    .header-logo-text {
+      font-family: 'Antonio', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+    }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      list-style: none;
+    }
+    .header-nav a {
+      color: var(--offWhite);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+    .header-nav a:hover { opacity: 0.6; }
+    #clock { font-size: 14px; color: var(--offWhite); }
+
+    #ham-btn {
+      display: none;
+      position: fixed;
+      top: 28px; right: 28px;
+      z-index: 110;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 32px; height: 32px;
+      background: none; border: none;
+      cursor: pointer;
+    }
+    .ham-line {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--offWhite); transition: all 0.3s;
+    }
+    #mob-book {
+      display: none;
+      position: fixed;
+      top: 28px; right: 70px;
+      z-index: 110;
+    }
+    #header-phone {
+      position: fixed;
+      top: 28px; right: 178px;
+      z-index: 110;
+      display: flex;
+      align-items: center;
+    }
+    #header-phone a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(240,240,240,0.10);
+      border: 1px solid rgb(240,240,240);
+      border-radius: 6px;
+      padding: 2px 8px;
+      color: var(--offWhite);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 1.12px;
+      white-space: nowrap;
+      transition: background 0.3s ease;
+    }
+    #header-phone a:hover { background: rgba(240,240,240,0.30); }
+
+    #mob-menu {
+      display: none;
+      position: fixed; inset: 0;
+      z-index: 105;
+      background: rgba(24,24,24,0.97);
+      backdrop-filter: blur(12px);
+      align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    #mob-menu.open { opacity: 1; pointer-events: auto; }
+    #mob-menu ul { list-style: none; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    #mob-menu ul a { font-size: 1.1rem; color: var(--offWhite); letter-spacing: 0.1em; padding: 10px 28px; background: rgba(255,255,255,0.06); border-radius: 8px; display: block; }
+
+    #float-cta {
+      position: fixed; bottom: 28px; right: 28px;
+      z-index: 100; opacity: 0; transform: translateY(70px);
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    #float-cta.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 90vh;
+    }
+    @media (min-width: 768px) { #hero { height: 100vh; } }
+    .hero-slide {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: opacity 0.7s ease-in-out;
+    }
+    .hero-veil {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 90%);
+      z-index: 1; pointer-events: none;
+    }
+    #hero-dots {
+      position: absolute;
+      bottom: 168px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 8px;
+      z-index: 10;
+    }
+    .dot {
+      display: block; width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.40);
+      border: none; cursor: pointer; padding: 0;
+      transition: all 0.3s;
+    }
+    .dot.active { background: #fff; transform: scale(1.4); }
+    .hero-title-wrap {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 2;
+      padding: 0 28px 20px;
+      overflow: hidden;
+    }
+    .hero-title-main {
+      display: block;
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(3rem, 10vw, 11rem);
+      font-weight: 400;
+      color: var(--offWhite);
+      line-height: 0.82;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .section-h2 {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(1.4rem, 5vw, 2.5rem);
+      font-weight: 400;
+      color: var(--fair);
+      text-align: center;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      padding-top: 80px;
+      line-height: 0.9;
+    }
+    .section-p {
+      color: var(--grey);
+      font-size: 12px;
+      text-align: center;
+      letter-spacing: 1.12px;
+      line-height: 1.5;
+      text-transform: uppercase;
+      margin-top: 20px;
+      max-width: 58%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .color-blur {
+      position: absolute;
+      pointer-events: none;
+      width: 800px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(120,60,180,0.22) 0%, rgba(200,80,100,0.14) 45%, transparent 70%);
+      filter: blur(90px);
+      transform: rotate(45deg);
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    #artists {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #artists-filter {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .filter-btn {
+      background: rgba(240,240,240,0.08);
+      border: 1px solid rgba(240,240,240,0.30);
+      border-radius: 6px;
+      padding: 2px 10px;
+      color: var(--offWhite);
+      font-size: 12px;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active { background: rgba(240,240,240,0.22); }
+
+    #artists-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      gap: 4px;
+      width: 100%;
+      margin-top: 28px;
+      position: relative;
+      z-index: 1;
     }
-    .gallery-item { overflow: hidden; position: relative; cursor: pointer; }
-    .gallery-item.tall { grid-row: span 2; }
-    .gallery-item.wide { grid-column: span 2; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; filter: brightness(0.88); }
-    .gallery-item:hover img { transform: scale(1.05); filter: brightness(1); }
-    .gallery-item .overlay {
-      position: absolute; inset: 0; background: rgba(10,10,10,0.6);
-      opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;
+    .acard {
+      display: block;
+      text-decoration: none;
+      color: var(--offWhite);
+      position: relative;
+      cursor: pointer;
     }
-    .gallery-item:hover .overlay { opacity: 1; }
-    .overlay-inner { text-align: center; }
-    .overlay-inner i { font-size: 28px; color: var(--gold); margin-bottom: 8px; display: block; }
-    .overlay-inner span { font-size: 13px; color: rgba(255,255,255,0.8); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+    .acard-carousel-wrap { position: relative; overflow: hidden; }
+    .acard-carousel {
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .acard-carousel::-webkit-scrollbar { display: none; }
+    .acard-carousel img {
+      width: 100%; flex-shrink: 0;
+      scroll-snap-align: center;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+    .acard-tap {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      padding: 14px 0 40px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.65), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 5;
+      text-align: center;
+    }
+    .acard-tap p { font-size: 11px; color: rgba(255,255,255,0.80); letter-spacing: 1.12px; }
+    .acard:hover .acard-tap { opacity: 1; }
+    .acard-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px; background: rgba(255,255,255,0.08);
+      z-index: 5; opacity: 0; transition: opacity 0.3s;
+    }
+    .acard:hover .acard-bar { opacity: 1; }
+    .acard-bar-fill {
+      height: 100%;
+      background: rgba(255,255,255,0.65);
+      width: 25%;
+      transition: width 0.25s ease;
+    }
+    .acard-info {
+      padding: 10px 8px 20px;
+      text-align: center;
+    }
+    .acard-style {
+      font-size: 10px;
+      color: var(--grey);
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .acard-name {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-weight: 400;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      line-height: 0.9;
+      color: var(--offWhite);
+    }
+    .acard-ig {
+      font-size: 10px;
+      color: var(--grey);
+      letter-spacing: 0.5px;
+      text-transform: none;
+      margin-top: 4px;
+      display: block;
+    }
 
-    /* ── STYLES ── */
-    #styles { background: var(--ink); }
-    .styles-header { text-align: center; margin-bottom: 56px; }
-    .styles-header .section-label { justify-content: center; }
-    .styles-header .section-sub { margin: 0 auto; }
-    .styles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--border); }
-    .style-card {
-      background: var(--ink2); padding: 40px 32px; position: relative; overflow: hidden;
-      transition: background 0.3s;
+    #show-more {
+      margin-top: 24px;
+      padding-bottom: 60px;
+      position: relative;
+      z-index: 1;
     }
-    .style-card:hover { background: var(--ink3); }
-    .style-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.35s;
+    #show-more a {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-start;
+      color: var(--offWhite);
+      font-size: 12px;
+      letter-spacing: 1.12px;
+      cursor: pointer;
     }
-    .style-card:hover::before { transform: scaleX(1); }
-    .style-icon {
-      width: 50px; height: 50px; border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 12px; display: flex; align-items: center; justify-content: center;
-      font-size: 20px; color: var(--gold); margin-bottom: 22px; transition: background 0.3s;
-    }
-    .style-card:hover .style-icon { background: var(--gold-g); }
-    .style-card h3 { font-family: 'Bebas Neue'; font-size: 26px; letter-spacing: 2px; color: var(--white); margin-bottom: 10px; }
-    .style-card p { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
-    .style-ghost { position: absolute; bottom: -8px; right: 12px; font-family: 'Bebas Neue'; font-size: 64px; color: rgba(255,255,255,0.02); pointer-events: none; }
+    #show-more a span:first-child { font-family: 'Antonio', sans-serif; font-size: 1.1rem; }
+    #show-more a:hover { opacity: 0.7; }
 
-    /* ── ABOUT ── */
-    #about { background: var(--ink2); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1300px; margin: 0 auto; }
-    .about-img-wrap { position: relative; }
-    .about-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 10px; display: block; filter: brightness(0.9); }
-    .about-badge {
-      position: absolute; bottom: -20px; right: -20px;
-      background: var(--gold); border-radius: 10px; padding: 20px 24px;
-      text-align: center; box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    #cta-mid {
+      width: 100%;
+      height: 55vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
     }
-    .about-badge .num { font-family: 'Bebas Neue'; font-size: 44px; color: var(--ink); line-height: 1; display: block; }
-    .about-badge .lbl { font-size: 10px; color: rgba(10,10,10,0.7); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
-    .about-body { padding-left: 10px; }
-    .about-copy { font-size: 15.5px; line-height: 1.85; color: #aaa; margin: 20px 0 36px; }
-    .about-features { display: flex; flex-direction: column; gap: 14px; }
-    .about-feature { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--ink3); border-radius: 10px; border: 1px solid var(--border); transition: border-color 0.2s; }
-    .about-feature:hover { border-color: rgba(201,168,76,0.25); }
-    .feat-icon { width: 38px; height: 38px; min-width: 38px; background: var(--gold-g); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 15px; }
-    .about-feature p { font-size: 14px; color: #bbb; line-height: 1.5; }
-    .about-feature strong { color: var(--white); }
-
-    /* ── ARTISTS ── */
-    #artists { background: var(--ink); }
-    .artists-header { margin-bottom: 52px; }
-    .artists-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-    .artist-card {
-      background: var(--ink2); border: 1px solid var(--border); border-radius: 12px;
-      padding: 32px 24px; text-align: center; transition: border-color 0.3s, transform 0.3s;
+    @media (min-width: 768px) { #cta-mid { height: 80vh; margin-top: 80px; } }
+    #cta-mid h3 {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(1.3rem, 5vw, 3.5rem);
+      font-weight: 400;
+      color: var(--offWhite);
+      text-align: center;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      line-height: 0.9;
+      width: 66%;
+      position: relative; z-index: 1;
     }
-    .artist-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
-    .artist-avatar {
-      width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 18px;
-      background: linear-gradient(135deg, var(--gold), var(--red));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Bebas Neue'; font-size: 28px; color: white; letter-spacing: 2px;
+    #cta-mid p {
+      color: var(--grey);
+      font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      position: relative; z-index: 1;
     }
-    .artist-name { font-family: 'Bebas Neue'; font-size: 22px; letter-spacing: 2px; color: var(--white); margin-bottom: 6px; }
-    .artist-spec { font-size: 12px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
-    .artist-bio { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
-    /* ── REVIEWS ── */
-    #reviews { background: var(--ink2); }
-    .reviews-header { text-align: center; margin-bottom: 52px; }
-    .reviews-header .section-label { justify-content: center; }
-    .reviews-header .section-sub { margin: 0 auto; }
-    .rating-pill {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: var(--ink3); border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 100px; padding: 9px 22px; margin-top: 14px;
+    #cta-mid .btn-book { position: relative; z-index: 1; margin-top: 12px; }
+    .cta-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.22);
     }
-    .r-stars { color: #f59e0b; letter-spacing: 3px; }
-    .r-text { font-size: 13.5px; color: var(--muted); }
-    .r-text strong { color: var(--white); }
-    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; max-width: 1300px; margin: 0 auto; }
-    .review-card { background: var(--ink3); border: 1px solid var(--border); border-radius: 12px; padding: 32px; transition: border-color 0.3s, transform 0.3s; }
-    .review-card:hover { border-color: rgba(201,168,76,0.22); transform: translateY(-4px); }
-    .rc-stars { color: #f59e0b; font-size: 12px; letter-spacing: 2px; margin-bottom: 16px; }
-    .review-card blockquote { font-size: 15px; line-height: 1.75; color: #bbb; font-style: italic; margin-bottom: 22px; }
-    .review-card blockquote::before { content: '"'; font-family: 'Playfair Display'; font-size: 60px; color: rgba(201,168,76,0.2); line-height: 0; vertical-align: -28px; margin-right: 4px; }
-    .rc-author { display: flex; align-items: center; gap: 14px; }
-    .rc-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue'; font-size: 17px; color: var(--ink); }
-    .rc-name { font-weight: 600; font-size: 14px; color: var(--white); }
-    .rc-meta { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
 
-    /* ── WALK-IN STRIP ── */
-    .walkin-strip {
-      background: var(--ink3); border-top: 1px solid rgba(201,168,76,0.15); border-bottom: 1px solid rgba(201,168,76,0.15);
-      padding: 56px 5%; text-align: center;
+    #styles {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 40px;
     }
-    .walkin-strip h2 { font-family: 'Bebas Neue'; font-size: clamp(36px, 4.5vw, 60px); color: var(--white); letter-spacing: 2px; margin-bottom: 12px; }
-    .walkin-strip p { font-size: 16px; color: var(--muted); margin-bottom: 28px; }
-
-    /* ── CONTACT ── */
-    #contact { background: var(--ink); }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1300px; margin: 0 auto; }
-    .contact-info { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
-    .ci-item { display: flex; gap: 18px; align-items: flex-start; padding: 20px; background: var(--ink2); border-radius: 10px; border: 1px solid var(--border); transition: border-color 0.2s; }
-    .ci-item:hover { border-color: rgba(201,168,76,0.2); }
-    .ci-icon { width: 44px; height: 44px; min-width: 44px; background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 17px; }
-    .ci-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2.5px; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
-    .ci-val { font-size: 15.5px; color: var(--white); font-weight: 500; line-height: 1.5; }
-    .ci-val a { color: var(--white); text-decoration: none; transition: color 0.2s; }
-    .ci-val a:hover { color: var(--gold); }
-    .hours-table { margin-top: 22px; background: var(--ink2); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
-    .hours-row { display: flex; justify-content: space-between; padding: 11px 18px; font-size: 13px; border-bottom: 1px solid var(--border); }
-    .hours-row:last-child { border-bottom: none; }
-    .hours-row .day { color: var(--muted); }
-    .hours-row .time { color: var(--white); font-weight: 600; }
-    .hours-row.open { background: rgba(201,168,76,0.04); }
-    .hours-row.open .day { color: var(--gold); }
-    .map-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); height: 380px; }
-    .map-wrap iframe { width: 100%; height: 100%; border: none; display: block; filter: saturate(0.4) brightness(0.7) hue-rotate(180deg); }
-
-    /* ── FOOTER ── */
-    footer { background: #080808; border-top: 1px solid var(--border); padding: 60px 5% 28px; }
-    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px; margin-bottom: 44px; padding-bottom: 44px; border-bottom: 1px solid var(--border); }
-    .f-brand p { font-size: 13.5px; color: var(--muted); line-height: 1.75; max-width: 300px; margin-top: 16px; }
-    .f-col h4 { font-family: 'Bebas Neue'; font-size: 18px; letter-spacing: 2px; color: var(--white); margin-bottom: 18px; }
-    .f-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .f-col ul a { text-decoration: none; font-size: 13.5px; color: var(--muted); transition: color 0.2s; }
-    .f-col ul a:hover { color: var(--gold); }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .footer-bottom p { font-size: 12.5px; color: #444; }
-    .footer-bottom span { color: var(--gold); }
-
-    /* ── MOBILE ── */
-    @media (max-width: 900px) {
-      nav { top: 0; }
-      .topbar { display: none; }
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-      .about-grid { grid-template-columns: 1fr; }
-      .about-img-wrap { display: none; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item.wide { grid-column: span 1; }
+    .styles-track {
+      display: flex;
+      overflow-x: auto;
+      gap: 3px;
+      width: 100%;
+      margin-top: 24px;
+      scrollbar-width: none;
+      cursor: grab;
     }
-    @media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr; } }
+    .styles-track::-webkit-scrollbar { display: none; }
+    .scard {
+      flex: 0 0 320px;
+      height: 460px;
+      position: relative;
+      overflow: hidden;
+    }
+    .scard-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      filter: brightness(0.42);
+    }
+    .scard:hover .scard-bg { transform: scale(1.06); filter: brightness(0.55); }
+    .scard-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 55%);
+    }
+    .scard-top {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      padding: 14px 16px;
+      display: flex; justify-content: flex-end;
+    }
+    .scard-tap { font-size: 11px; color: rgba(255,255,255,0.70); letter-spacing: 1.12px; opacity: 0; transition: opacity 0.3s; }
+    .scard:hover .scard-tap { opacity: 1; }
+    .scard-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px 18px;
+    }
+    .scard-name {
+      font-size: clamp(0.9rem, 1.5vw, 1.25rem);
+      color: var(--offWhite);
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .scard-desc {
+      font-size: 11px;
+      color: rgba(240,240,240,0.70);
+      line-height: 1.6;
+      text-transform: none;
+      letter-spacing: normal;
+      font-weight: 300;
+    }
 
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+    #book-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 88px;
+      margin-bottom: 0;
+      padding-bottom: 96px;
+      position: relative;
+    }
+    #book-section h3 {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(2rem, 6vw, 5rem);
+      font-weight: 400;
+      color: var(--offWhite);
+      text-align: center;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      line-height: 0.9;
+      margin-bottom: 10px;
+    }
+    #book-section > p {
+      color: var(--offWhite);
+      font-size: clamp(0.85rem, 1.5vw, 1.25rem);
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .tag-rows {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 36px;
+      overflow: hidden;
+    }
+    .tag-row { display: flex; gap: 10px; flex-wrap: nowrap; }
+    .tag-pill {
+      background: var(--brown);
+      color: var(--fair);
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 13px;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .tag-pill.from-left { transform: translateX(-60px); }
+    .tag-pill.visible { opacity: 1; transform: translateX(0); }
+
+    footer {
+      border-top: 1px solid rgba(240,240,240,0.08);
+      padding: 48px 28px;
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .footer-inner { flex-direction: row; justify-content: space-between; }
+    }
+    .footer-col h4 {
+      opacity: 0.30;
+      font-size: 12px;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .footer-col p, .footer-col a {
+      font-size: 12px;
+      color: var(--offWhite);
+      text-transform: none;
+      letter-spacing: normal;
+      line-height: 1.7;
+      display: block;
+    }
+    .footer-col a:hover { opacity: 0.65; }
+    .footer-bottom {
+      border-top: 1px solid rgba(240,240,240,0.08);
+      padding-top: 16px;
+      margin-top: 28px;
+      max-width: 1180px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom p, .footer-bottom a {
+      font-size: 10px;
+      color: rgba(240,240,240,0.25);
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    #form-modal {
+      position: fixed; inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    #form-modal.open { display: flex; }
+    #form-modal::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+    }
+    .form-box {
+      background: #1e1e1e;
+      border: 1px solid rgba(240,240,240,0.10);
+      width: 100%; max-width: 540px;
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 36px 32px;
+      position: relative; z-index: 1;
+      border-radius: 4px;
+    }
+    .form-close {
+      position: absolute; top: 14px; right: 18px;
+      background: none; border: none;
+      color: var(--grey); font-size: 1.2rem;
+      cursor: pointer; line-height: 1;
+    }
+    .form-close:hover { color: var(--offWhite); }
+    .form-h {
+      font-family: 'Antonio', sans-serif;
+      font-size: 2.2rem; font-weight: 400;
+      letter-spacing: 1.12px; text-transform: uppercase;
+      color: var(--offWhite);
+      margin-bottom: 4px;
+    }
+    .form-sub {
+      font-size: 11px; color: var(--grey);
+      text-transform: none; letter-spacing: normal;
+      margin-bottom: 28px;
+    }
+    .fg { margin-bottom: 20px; }
+    .fg label {
+      display: block; font-size: 9px;
+      letter-spacing: 1.12px; color: rgba(240,240,240,0.40);
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .fg input, .fg select, .fg textarea {
+      width: 100%; background: transparent;
+      border: none; border-bottom: 1px solid rgba(240,240,240,0.12);
+      color: var(--offWhite);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 300;
+      letter-spacing: 0.03em; padding: 7px 0;
+      outline: none; text-transform: none;
+      transition: border-color 0.2s;
+    }
+    .fg input::placeholder { color: rgba(240,240,240,0.20); }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-bottom-color: rgba(240,240,240,0.45); }
+    .fg select option { background: #1e1e1e; }
+    .fg textarea { resize: vertical; min-height: 72px; }
+    .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .btn-submit {
+      width: 100%; margin-top: 8px;
+      background: rgba(240,240,240,0.08);
+      border: 1px solid rgba(240,240,240,0.40);
+      color: var(--offWhite);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 1.12px; text-transform: uppercase;
+      padding: 11px; cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: rgba(240,240,240,0.18); }
+
+    @media (max-width: 1280px) {
+      .header-desktop { display: none !important; }
+      #ham-btn { display: flex; }
+      #mob-book { display: block; }
+      #mob-menu { display: flex; }
+    }
+    @media (max-width: 1024px) {
+      #artists-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      #artists-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-p { max-width: 90%; }
+      .fg-row { grid-template-columns: 1fr; }
+      .hero-title-main { font-size: clamp(2rem, 13vw, 4rem); }
+    }
   </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="topbar-left">
-    <span class="topbar-item"><i class="fa-solid fa-location-dot"></i> 1106 Main St #4, Billings, MT</span>
-    <span class="topbar-item"><i class="fa-solid fa-clock"></i> Tue–Sat: 12PM – 8PM</span>
-    <span class="topbar-item"><i class="fa-solid fa-phone"></i> (406) 371-5836</span>
-  </div>
-  <a href="tel:4063715836" class="topbar-cta">Call Us →</a>
+<!-- ── FIXED LOGO ── -->
+<div style="position:fixed;top:28px;left:28px;z-index:110;">
+  <a href="#" style="font-family:'Antonio',sans-serif;font-size:1.1rem;font-weight:500;letter-spacing:0.18em;color:var(--offWhite);">MAGIC CITY MARKERS</a>
 </div>
 
-<!-- NAV -->
-<nav id="navbar">
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-mark">MCM</div>
-    <div class="nav-logo-text">
-      <span class="top">Magic City Markers</span>
-      <span class="sub">Custom Tattoo Studio · Billings, MT</span>
-    </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#styles">Styles</a></li>
-    <li><a href="#artists">Artists</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#contact">Contact</a></li>
+<!-- ── PHONE ── -->
+<div id="header-phone"><a href="tel:4062812990">(406) 281-2990</a></div>
+
+<!-- ── MOBILE ELEMENTS ── -->
+<div id="mob-book">
+  <button class="btn-book open-form">Book now</button>
+</div>
+<button id="ham-btn" aria-label="Menu">
+  <span class="ham-line"></span>
+  <span class="ham-line"></span>
+  <span class="ham-line"></span>
+</button>
+<div id="mob-menu">
+  <ul>
+    <li><a href="#artists" onclick="closeMob()">Artists</a></li>
+    <li><a href="#styles" onclick="closeMob()">Styles</a></li>
+    <li><a href="#contact" onclick="closeMob()">Studio</a></li>
+    <li><a href="#contact" onclick="closeMob()">Contact</a></li>
+    <li style="margin-top:14px;"><button class="btn-book open-form" onclick="closeMob()">Book now</button></li>
   </ul>
-  <a href="tel:4063715836" class="nav-phone"><i class="fa-solid fa-phone"></i> (406) 371-5836</a>
-  <div class="nav-hamburger"><span></span><span></span><span></span></div>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow"><i class="fa-solid fa-star"></i> Walk-Ins Welcome · Est. 2012</div>
-    <h1>
-      <span class="script">Where art meets skin.</span>
-      Custom<br>Tattoo Studio
-    </h1>
-    <p class="hero-desc">Magic City Markers has been crafting world-class tattoos in the heart of Billings, Montana since 2012. Realism, traditional, fine line, blackwork — we do it all.</p>
-    <div class="hero-actions">
-      <a href="tel:4063715836" class="btn-gold"><i class="fa-solid fa-phone"></i> Call to Schedule</a>
-      <a href="#gallery" class="btn-outline"><i class="fa-solid fa-images"></i> View the Work</a>
-    </div>
-    <div class="hero-badges">
-      <div class="hero-badge-item">
-        <div class="hero-badge-num">4.5<span>★</span></div>
-        <div class="hero-badge-label">Google Rating</div>
-      </div>
-      <div class="hero-badge-item">
-        <div class="hero-badge-num">363<span>+</span></div>
-        <div class="hero-badge-label">Reviews</div>
-      </div>
-      <div class="hero-badge-item">
-        <div class="hero-badge-num">12<span>+</span></div>
-        <div class="hero-badge-label">Years in Billings</div>
-      </div>
-      <div class="hero-badge-item">
-        <div class="hero-badge-num">All<span>·</span></div>
-        <div class="hero-badge-label">Styles Welcome</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GOLD STRIP -->
-<div class="gold-strip">
-  <div class="gold-strip-inner">
-    <span class="strip-item">Realism <span class="strip-dot"></span></span>
-    <span class="strip-item">American Traditional <span class="strip-dot"></span></span>
-    <span class="strip-item">Fine Line <span class="strip-dot"></span></span>
-    <span class="strip-item">Blackwork <span class="strip-dot"></span></span>
-    <span class="strip-item">Geometric <span class="strip-dot"></span></span>
-    <span class="strip-item">Ornamental <span class="strip-dot"></span></span>
-    <span class="strip-item">Custom Art <span class="strip-dot"></span></span>
-    <span class="strip-item">Piercings <span class="strip-dot"></span></span>
-    <span class="strip-item">Walk-Ins Welcome <span class="strip-dot"></span></span>
-    <span class="strip-item">Realism <span class="strip-dot"></span></span>
-    <span class="strip-item">American Traditional <span class="strip-dot"></span></span>
-    <span class="strip-item">Fine Line <span class="strip-dot"></span></span>
-    <span class="strip-item">Blackwork <span class="strip-dot"></span></span>
-    <span class="strip-item">Geometric <span class="strip-dot"></span></span>
-    <span class="strip-item">Ornamental <span class="strip-dot"></span></span>
-    <span class="strip-item">Custom Art <span class="strip-dot"></span></span>
-    <span class="strip-item">Piercings <span class="strip-dot"></span></span>
-    <span class="strip-item">Walk-Ins Welcome <span class="strip-dot"></span></span>
-  </div>
 </div>
 
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="gallery-head reveal">
-    <div>
-      <span class="section-label">Portfolio</span>
-      <h2 class="section-title">The Work Speaks<br>for Itself</h2>
-    </div>
-    <p class="section-sub">From bold traditional pieces to hyper-detailed realism, every tattoo is custom-designed for the person wearing it.</p>
+<!-- ── HEADER ── -->
+<header id="main-header">
+  <div class="header-gradient"></div>
+  <div class="header-desktop">
+    <span class="header-logo-spacer" style="font-family:'Antonio',sans-serif;font-size:1.1rem;font-weight:500;letter-spacing:0.18em;">MAGIC CITY MARKERS</span>
+    <ul class="header-nav">
+      <li><a href="#artists">Artists</a></li>
+      <li><a href="#styles">Styles</a></li>
+      <li><a href="#contact">Studio</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><span id="clock"></span></li>
+    </ul>
+    <button class="btn-book open-form">Book now</button>
   </div>
-  <div class="gallery-grid">
-    <div class="gallery-item tall reveal">
-      <img src="https://images.unsplash.com/photo-1597852075234-fd721ac361d3?w=800&q=85&fit=crop" alt="Traditional tattoo" loading="lazy"
-           onerror="this.src='https://images.unsplash.com/photo-1605647533135-51b5906087d0?w=800&q=85&fit=crop'" />
-      <div class="overlay"><div class="overlay-inner"><i class="fa-regular fa-eye"></i><span>Traditional</span></div></div>
-    </div>
-    <div class="gallery-item reveal d1">
-      <img src="https://images.unsplash.com/photo-1605647533135-51b5906087d0?w=800&q=85&fit=crop" alt="Black and grey realism" loading="lazy" />
-      <div class="overlay"><div class="overlay-inner"><i class="fa-regular fa-eye"></i><span>Realism</span></div></div>
-    </div>
-    <div class="gallery-item reveal d2">
-      <img src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=800&q=85&fit=crop" alt="Fine line tattoo" loading="lazy"
-           onerror="this.src='https://images.unsplash.com/photo-1552627019-947c3789ffb5?w=800&q=85&fit=crop'" />
-      <div class="overlay"><div class="overlay-inner"><i class="fa-regular fa-eye"></i><span>Fine Line</span></div></div>
-    </div>
-    <div class="gallery-item wide reveal d1">
-      <img src="https://images.unsplash.com/photo-1564426622559-5af68da63b96?w=1200&q=85&fit=crop" alt="Eagle tattoo" loading="lazy"
-           onerror="this.src='https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=1200&q=85&fit=crop'" />
-      <div class="overlay"><div class="overlay-inner"><i class="fa-regular fa-eye"></i><span>Neo-Traditional</span></div></div>
-    </div>
-    <div class="gallery-item reveal d2">
-      <img src="https://images.unsplash.com/photo-1552627019-947c3789ffb5?w=800&q=85&fit=crop" alt="Colorful tattoo" loading="lazy" />
-      <div class="overlay"><div class="overlay-inner"><i class="fa-regular fa-eye"></i><span>Color</span></div></div>
-    </div>
-    <div class="gallery-item reveal">
-      <img src="https://images.unsplash.com/photo-1638458957842-d901372fed55?w=800&q=85&fit=crop" alt="Tattoo studio" loading="lazy"
-           onerror="this.src='https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=800&q=85&fit=crop'" />
-      <div class="overlay"><div class="overlay-inner"><i class="fa-regular fa-eye"></i><span>Blackwork</span></div></div>
-    </div>
+</header>
+
+<!-- ── FLOATING CTA ── -->
+<div id="float-cta">
+  <button class="btn-book open-form">Book now</button>
+</div>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <h1 style="position:absolute;z-index:-1000;color:transparent;">Magic City Markers Tattoo Billings Montana</h1>
+  <div class="hero-veil"></div>
+  <img data-slide="0" class="hero-slide" style="opacity:1;"
+       src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=1900&q=90&fit=crop" alt=""/>
+  <img data-slide="1" class="hero-slide" style="opacity:0;"
+       src="https://images.unsplash.com/photo-1597852075234-fd721ac361d3?w=1900&q=90&fit=crop" alt=""/>
+  <img data-slide="2" class="hero-slide" style="opacity:0;"
+       src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=1900&q=90&fit=crop" alt=""/>
+  <img data-slide="3" class="hero-slide" style="opacity:0;"
+       src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1900&q=90&fit=crop" alt=""/>
+  <img data-slide="4" class="hero-slide" style="opacity:0;"
+       src="https://images.unsplash.com/photo-1564426622559-5af68da63b96?w=1900&q=90&fit=crop" alt=""/>
+  <img data-slide="5" class="hero-slide" style="opacity:0;"
+       src="https://images.unsplash.com/photo-1552627019-947c3789ffb5?w=1900&q=90&fit=crop" alt=""/>
+  <div id="hero-dots">
+    <button class="dot active" data-i="0"></button>
+    <button class="dot" data-i="1"></button>
+    <button class="dot" data-i="2"></button>
+    <button class="dot" data-i="3"></button>
+    <button class="dot" data-i="4"></button>
+    <button class="dot" data-i="5"></button>
+  </div>
+  <div class="hero-title-wrap">
+    <span class="hero-title-main">Magic City Markers</span>
   </div>
 </section>
 
-<!-- STYLES -->
-<section id="styles">
-  <div class="styles-header reveal">
-    <span class="section-label">Our Specialties</span>
-    <h2 class="section-title">Every Style. One Studio.</h2>
-    <p class="section-sub">Whether you have a clear vision or need help designing something from scratch, our artists bring it to life.</p>
-  </div>
-  <div class="styles-grid">
-    <div class="style-card reveal">
-      <div class="style-icon"><i class="fa-solid fa-eye"></i></div>
-      <div class="style-ghost">01</div>
-      <h3>Realism</h3>
-      <p>Hyper-detailed portraits, animals, and nature pieces crafted with precise shading and photorealistic depth.</p>
-    </div>
-    <div class="style-card reveal d1">
-      <div class="style-icon"><i class="fa-solid fa-anchor"></i></div>
-      <div class="style-ghost">02</div>
-      <h3>American Traditional</h3>
-      <p>Classic bold lines, timeless imagery, and rich saturated color — the old-school art form done right.</p>
-    </div>
-    <div class="style-card reveal d2">
-      <div class="style-icon"><i class="fa-solid fa-pen-nib"></i></div>
-      <div class="style-ghost">03</div>
-      <h3>Fine Line</h3>
-      <p>Delicate, precise linework for intricate botanical, script, and minimalist designs that age beautifully.</p>
-    </div>
-    <div class="style-card reveal d3">
-      <div class="style-icon"><i class="fa-solid fa-moon"></i></div>
-      <div class="style-ghost">04</div>
-      <h3>Blackwork</h3>
-      <p>Bold, graphic black ink designs — from geometric mandala sleeves to ornamental and dark illustrative work.</p>
-    </div>
-    <div class="style-card reveal">
-      <div class="style-icon"><i class="fa-solid fa-star-of-david"></i></div>
-      <div class="style-ghost">05</div>
-      <h3>Geometric</h3>
-      <p>Sacred geometry, mandalas, dotwork, and linework arranged into striking, mathematically precise compositions.</p>
-    </div>
-    <div class="style-card reveal d1">
-      <div class="style-icon"><i class="fa-solid fa-palette"></i></div>
-      <div class="style-ghost">06</div>
-      <h3>Neo-Traditional</h3>
-      <p>Modern takes on classic styles — vibrant palettes, exaggerated proportions, and bold contemporary imagery.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-img-wrap reveal">
-      <img class="about-img"
-        src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=900&q=85&fit=crop"
-        alt="Tattoo artist at work"
-        onerror="this.src='https://images.unsplash.com/photo-1605647533135-51b5906087d0?w=900&q=85&fit=crop'"
-      />
-      <div class="about-badge">
-        <span class="num">2012</span>
-        <span class="lbl">Est. in Billings</span>
-      </div>
-    </div>
-    <div class="reveal d2">
-      <span class="section-label">About the Studio</span>
-      <h2 class="section-title">Magic City Markers</h2>
-      <p class="about-copy">Founded in Billings in 2012, Magic City Markers set out with one mission: bring quality, artistic tattoos to Montana. More than a decade later, we've grown into one of the most respected studios in the state — with a team of multi-style artists, walk-in hours, and a welcoming environment for first-timers and collectors alike.</p>
-      <div class="about-features">
-        <div class="about-feature">
-          <div class="feat-icon"><i class="fa-solid fa-door-open"></i></div>
-          <p><strong>Walk-Ins Always Welcome</strong> — No appointment? No problem. Come in Tue–Sat, noon to 8.</p>
-        </div>
-        <div class="about-feature">
-          <div class="feat-icon"><i class="fa-solid fa-wheelchair"></i></div>
-          <p><strong>Fully Accessible</strong> — Wheelchair accessible location with private parking on-site.</p>
-        </div>
-        <div class="about-feature">
-          <div class="feat-icon"><i class="fa-solid fa-heart"></i></div>
-          <p><strong>Areola Reconstruction</strong> — Specialized tattooing for mastectomy survivors, done with care.</p>
-        </div>
-        <div class="about-feature">
-          <div class="feat-icon"><i class="fa-solid fa-gem"></i></div>
-          <p><strong>Piercings & Apparel</strong> — Full piercing services plus Sullen Art Collective and Ink Addict gear in-studio.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ARTISTS -->
+<!-- ── ARTISTS ── -->
 <section id="artists">
-  <div class="artists-header reveal">
-    <span class="section-label">The Team</span>
-    <h2 class="section-title">Meet the Artists</h2>
-    <p class="section-sub">Each artist at Magic City Markers brings their own style and specialty — we have someone for every vision.</p>
+  <div class="color-blur" style="top:40%;left:50%;transform:translate(-50%,-55%) rotate(45deg);"></div>
+  <h2 class="section-h2">Meet our artists</h2>
+  <p class="section-p">Custom tattoo work crafted with precision and passion in Billings, Montana. Walk-ins welcome.</p>
+
+  <div id="artists-filter">
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn">Traditional</button>
+    <button class="filter-btn">Black &amp; Grey</button>
+    <button class="filter-btn">Realism</button>
+    <button class="filter-btn">Fine Line</button>
+    <button class="filter-btn">Color</button>
   </div>
-  <div class="artists-grid">
-    <div class="artist-card reveal">
-      <div class="artist-avatar">DJ</div>
-      <div class="artist-name">Dave Johnson</div>
-      <div class="artist-spec">Realism · Traditional</div>
-      <p class="artist-bio">Studio founder and renowned realist. Dave's work blends technical precision with artistic vision, earning him a loyal following across Montana.</p>
+
+  <div id="artists-grid">
+    <!-- Dave Johnson -->
+    <a class="acard" href="https://instagram.com/tattoodaveatlivingcanvastattoo" target="_blank">
+      <div class="acard-carousel-wrap">
+        <div class="acard-carousel">
+          <img src="https://images.unsplash.com/photo-1552627019-947c3789ffb5?w=600&q=85&fit=crop" alt="Dave Johnson tattoo"/>
+          <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=600&q=85&fit=crop" alt="Dave Johnson tattoo"/>
+          <img src="https://images.unsplash.com/photo-1564426622559-5af68da63b96?w=600&q=85&fit=crop" alt="Dave Johnson tattoo"/>
+          <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85&fit=crop" alt="Dave Johnson tattoo"/>
+        </div>
+        <div class="acard-tap"><p>Tap to discover</p></div>
+        <div class="acard-bar"><div class="acard-bar-fill"></div></div>
+      </div>
+      <div class="acard-info">
+        <p class="acard-style">Realism · Fine Line · Custom</p>
+        <h3 class="acard-name">Dave Johnson</h3>
+        <span class="acard-ig">@tattoodaveatlivingcanvastattoo</span>
+      </div>
+    </a>
+    <!-- Danny -->
+    <a class="acard" href="https://www.facebook.com/MagicCityMarkers" target="_blank">
+      <div class="acard-carousel-wrap">
+        <div class="acard-carousel">
+          <img src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=600&q=85&fit=crop" alt="Danny tattoo"/>
+          <img src="https://images.unsplash.com/photo-1597852075234-fd721ac361d3?w=600&q=85&fit=crop" alt="Danny tattoo"/>
+          <img src="https://images.unsplash.com/photo-1552627019-947c3789ffb5?w=600&q=85&fit=crop" alt="Danny tattoo"/>
+          <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85&fit=crop" alt="Danny tattoo"/>
+        </div>
+        <div class="acard-tap"><p>Tap to discover</p></div>
+        <div class="acard-bar"><div class="acard-bar-fill"></div></div>
+      </div>
+      <div class="acard-info">
+        <p class="acard-style">Traditional · Black &amp; Grey · Custom</p>
+        <h3 class="acard-name">Danny</h3>
+        <span class="acard-ig">View work on Facebook</span>
+      </div>
+    </a>
+    <!-- Jordyn -->
+    <a class="acard" href="https://www.facebook.com/MagicCityMarkers" target="_blank">
+      <div class="acard-carousel-wrap">
+        <div class="acard-carousel">
+          <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=600&q=85&fit=crop" alt="Jordyn tattoo"/>
+          <img src="https://images.unsplash.com/photo-1564426622559-5af68da63b96?w=600&q=85&fit=crop" alt="Jordyn tattoo"/>
+          <img src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=600&q=85&fit=crop" alt="Jordyn tattoo"/>
+          <img src="https://images.unsplash.com/photo-1597852075234-fd721ac361d3?w=600&q=85&fit=crop" alt="Jordyn tattoo"/>
+        </div>
+        <div class="acard-tap"><p>Tap to discover</p></div>
+        <div class="acard-bar"><div class="acard-bar-fill"></div></div>
+      </div>
+      <div class="acard-info">
+        <p class="acard-style">Color · Sleeve Work · Illustrative</p>
+        <h3 class="acard-name">Jordyn</h3>
+        <span class="acard-ig">View work on Facebook</span>
+      </div>
+    </a>
+  </div>
+
+  <div id="show-more">
+    <a href="https://instagram.com/tattoodaveatlivingcanvastattoo" target="_blank">
+      <span>See more work</span>
+      <span style="color:var(--grey);font-size:11px;">@tattoodaveatlivingcanvastattoo on Instagram</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── "THINKING ABOUT YOUR NEXT TATTOO?" CTA ── -->
+<section id="cta-mid">
+  <img class="cta-bg" src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=1600&q=80&fit=crop" alt=""/>
+  <div class="color-blur" style="top:50%;left:50%;transform:translate(-50%,-50%) rotate(30deg);opacity:0.4;"></div>
+  <h3>Thinking about your next tattoo?</h3>
+  <p>Get it done with us</p>
+  <button class="btn-book open-form" style="margin-top:16px;">Book now</button>
+</section>
+
+<!-- ── STYLES ── -->
+<section id="styles">
+  <div class="color-blur" style="top:50%;right:-200px;transform:translateY(-50%) rotate(-30deg);opacity:0.4;left:auto;"></div>
+  <h2 class="section-h2">Masters in different styles</h2>
+  <p class="section-p">Outstanding for mastering the most important styles. Swipe to see the different projects and get an idea of our art.</p>
+  <div class="styles-track">
+    <div class="scard">
+      <img class="scard-bg" src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=700&q=85&fit=crop" alt=""/>
+      <div class="scard-overlay"></div>
+      <div class="scard-top"><span class="scard-tap">Tap to explore</span></div>
+      <div class="scard-content">
+        <div class="scard-name">American Traditional</div>
+        <p class="scard-desc">Bold outlines and classic iconography built to look great for decades.</p>
+      </div>
     </div>
-    <div class="artist-card reveal d1">
-      <div class="artist-avatar">MM</div>
-      <div class="artist-name">Matt Moreledge</div>
-      <div class="artist-spec">Custom · All Styles</div>
-      <p class="artist-bio">Praised for his attention to detail and communication. Matt works closely with each client to bring their ideas to life with stunning precision.</p>
+    <div class="scard">
+      <img class="scard-bg" src="https://images.unsplash.com/photo-1564426622559-5af68da63b96?w=700&q=85&fit=crop" alt=""/>
+      <div class="scard-overlay"></div>
+      <div class="scard-top"><span class="scard-tap">Tap to explore</span></div>
+      <div class="scard-content">
+        <div class="scard-name">Black &amp; Grey</div>
+        <p class="scard-desc">Deep shading and stunning contrast — perfect for timeless, powerful pieces.</p>
+      </div>
     </div>
-    <div class="artist-card reveal d2">
-      <div class="artist-avatar">AL</div>
-      <div class="artist-name">Alyssa</div>
-      <div class="artist-spec">Sleeve Work · Color</div>
-      <p class="artist-bio">Known for intricate sleeve work and vibrant color. Clients rave about her fun appointments and her ability to turn concepts into wearable art.</p>
+    <div class="scard">
+      <img class="scard-bg" src="https://images.unsplash.com/photo-1597852075234-fd721ac361d3?w=700&q=85&fit=crop" alt=""/>
+      <div class="scard-overlay"></div>
+      <div class="scard-top"><span class="scard-tap">Tap to explore</span></div>
+      <div class="scard-content">
+        <div class="scard-name">Realism</div>
+        <p class="scard-desc">Photorealistic portraits and fine-detail pieces that look like they belong in a frame.</p>
+      </div>
     </div>
-    <div class="artist-card reveal d3">
-      <div class="artist-avatar">JD</div>
-      <div class="artist-name">JD</div>
-      <div class="artist-spec">Fine Line · Blackwork</div>
-      <p class="artist-bio">Multiple clients specifically seek out JD for his artistry with fine line and blackwork — clean, precise, and built to last.</p>
+    <div class="scard">
+      <img class="scard-bg" src="https://images.unsplash.com/photo-1605647533135-51b5906087d0?w=700&q=85&fit=crop" alt=""/>
+      <div class="scard-overlay"></div>
+      <div class="scard-top"><span class="scard-tap">Tap to explore</span></div>
+      <div class="scard-content">
+        <div class="scard-name">Fine Line</div>
+        <p class="scard-desc">Delicate, precise linework for intricate designs that stand the test of time.</p>
+      </div>
+    </div>
+    <div class="scard">
+      <img class="scard-bg" src="https://images.unsplash.com/photo-1552627019-947c3789ffb5?w=700&q=85&fit=crop" alt=""/>
+      <div class="scard-overlay"></div>
+      <div class="scard-top"><span class="scard-tap">Tap to explore</span></div>
+      <div class="scard-content">
+        <div class="scard-name">Color &amp; Sleeves</div>
+        <p class="scard-desc">Vibrant, full-color pieces and ambitious sleeve projects that turn heads.</p>
+      </div>
+    </div>
+    <div class="scard">
+      <img class="scard-bg" src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=700&q=85&fit=crop" alt=""/>
+      <div class="scard-overlay"></div>
+      <div class="scard-top"><span class="scard-tap">Tap to explore</span></div>
+      <div class="scard-content">
+        <div class="scard-name">Custom Work</div>
+        <p class="scard-desc">Bring your concept and our artists will build something made only for you.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- REVIEWS -->
-<section id="reviews">
-  <div class="reviews-header reveal">
-    <span class="section-label">What Clients Say</span>
-    <h2 class="section-title">363+ Reviews.<br>Real Stories.</h2>
-    <p class="section-sub">Billings and beyond — here's what our clients have to say.</p>
-    <div class="rating-pill">
-      <span class="r-stars">★★★★★</span>
-      <span class="r-text"><strong>4.5</strong> / 5 &nbsp;·&nbsp; 363+ Reviews on Google & Facebook</span>
-    </div>
+<!-- ── GALLERY ── -->
+<section id="gallery" style="width:100%;padding:80px 0 40px;display:flex;flex-direction:column;align-items:center;">
+  <h2 class="section-h2" style="padding:0 28px;">The Work</h2>
+  <p class="section-p">Recent pieces from the Magic City Markers crew. See more on Facebook &amp; Instagram.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;width:100%;margin-top:24px;">
+    <div style="overflow:hidden;aspect-ratio:1;"><img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=700&q=85&fit=crop" style="width:100%;height:100%;object-fit:cover;transition:transform 0.55s ease,filter 0.4s;filter:grayscale(10%);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='none'" onmouseout="this.style.transform='';this.style.filter='grayscale(10%)'"/></div>
+    <div style="overflow:hidden;aspect-ratio:1;"><img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=700&q=85&fit=crop" style="width:100%;height:100%;object-fit:cover;transition:transform 0.55s ease,filter 0.4s;filter:grayscale(10%);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='none'" onmouseout="this.style.transform='';this.style.filter='grayscale(10%)'"/></div>
+    <div style="overflow:hidden;aspect-ratio:1;"><img src="https://images.unsplash.com/photo-1564426622559-5af68da63b96?w=700&q=85&fit=crop" style="width:100%;height:100%;object-fit:cover;transition:transform 0.55s ease,filter 0.4s;filter:grayscale(10%);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='none'" onmouseout="this.style.transform='';this.style.filter='grayscale(10%)'"/></div>
+    <div style="overflow:hidden;aspect-ratio:1;"><img src="https://images.unsplash.com/photo-1552627019-947c3789ffb5?w=700&q=85&fit=crop" style="width:100%;height:100%;object-fit:cover;transition:transform 0.55s ease,filter 0.4s;filter:grayscale(10%);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='none'" onmouseout="this.style.transform='';this.style.filter='grayscale(10%)'"/></div>
+    <div style="overflow:hidden;aspect-ratio:1;"><img src="https://images.unsplash.com/photo-1597852075234-fd721ac361d3?w=700&q=85&fit=crop" style="width:100%;height:100%;object-fit:cover;transition:transform 0.55s ease,filter 0.4s;filter:grayscale(10%);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='none'" onmouseout="this.style.transform='';this.style.filter='grayscale(10%)'"/></div>
+    <div style="overflow:hidden;aspect-ratio:1;"><img src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=700&q=85&fit=crop" style="width:100%;height:100%;object-fit:cover;transition:transform 0.55s ease,filter 0.4s;filter:grayscale(10%);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='none'" onmouseout="this.style.transform='';this.style.filter='grayscale(10%)'"/></div>
   </div>
-  <div class="reviews-grid">
-    <div class="review-card reveal">
-      <div class="rc-stars">★★★★★</div>
-      <blockquote>Dave Johnson was the artist, and he did a great job. He was super personable yet professional. I'd absolutely recommend Magic City Markers to anyone looking for quality work.</blockquote>
-      <div class="rc-author">
-        <div class="rc-avatar">T</div>
-        <div>
-          <div class="rc-name">Tanner M.</div>
-          <div class="rc-meta">Billings, MT · Google Review</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-card reveal d1">
-      <div class="rc-stars">★★★★★</div>
-      <blockquote>Had the best appointment tonight with Alyssa! We had so much fun and her artwork is AMAZING. She did exactly what I was picturing — will 100% be coming back.</blockquote>
-      <div class="rc-author">
-        <div class="rc-avatar">S</div>
-        <div>
-          <div class="rc-name">Sara K.</div>
-          <div class="rc-meta">Billings, MT · Google Review</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-card reveal d2">
-      <div class="rc-stars">★★★★★</div>
-      <blockquote>They got us in right away! We got matching tattoos and had the best time — they even stayed late to finish it. The whole team makes you feel so welcome. True gems in Billings.</blockquote>
-      <div class="rc-author">
-        <div class="rc-avatar">C</div>
-        <div>
-          <div class="rc-name">Casey R.</div>
-          <div class="rc-meta">Billings, MT · Google Review</div>
-        </div>
-      </div>
-    </div>
+  <div style="margin-top:24px;text-align:center;">
+    <a href="https://www.facebook.com/MagicCityMarkers" target="_blank" style="font-size:11px;color:var(--grey);letter-spacing:1.12px;border-bottom:1px solid rgba(240,240,240,0.18);padding-bottom:2px;text-transform:none;">View all work on Facebook → Magic City Markers</a>
   </div>
 </section>
 
-<!-- WALK-IN STRIP -->
-<div class="walkin-strip">
-  <h2>Walk-Ins Welcome<br>Tuesday – Saturday</h2>
-  <p>No appointment needed. Come in any time between noon and 8 PM and we'll get you taken care of.</p>
-  <a href="tel:4063715836" class="btn-gold" style="font-size:15px;padding:15px 36px;">
-    <i class="fa-solid fa-phone"></i> (406) 371-5836
-  </a>
-</div>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-grid">
-    <div class="reveal">
-      <span class="section-label">Find Us</span>
-      <h2 class="section-title">Come See Us<br>in Billings</h2>
-      <p class="section-sub">Located at 1106 Main St in downtown Billings. Free parking, walk-ins welcome Tuesday through Saturday.</p>
-      <div class="contact-info">
-        <div class="ci-item">
-          <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
-          <div>
-            <div class="ci-label">Address</div>
-            <div class="ci-val">1106 Main St #4<br>Billings, MT 59105</div>
-          </div>
-        </div>
-        <div class="ci-item">
-          <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
-          <div>
-            <div class="ci-label">Phone</div>
-            <div class="ci-val"><a href="tel:4063715836">(406) 371-5836</a></div>
-          </div>
-        </div>
-        <div class="ci-item">
-          <div class="ci-icon"><i class="fa-brands fa-facebook"></i></div>
-          <div>
-            <div class="ci-label">Facebook</div>
-            <div class="ci-val"><a href="https://facebook.com/MagicCityMarkers" target="_blank">facebook.com/MagicCityMarkers</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="hours-table">
-        <div class="hours-row"><span class="day">Monday</span><span class="time" style="color:var(--red)">Closed</span></div>
-        <div class="hours-row open"><span class="day">Tuesday</span><span class="time">12:00 PM – 8:00 PM</span></div>
-        <div class="hours-row open"><span class="day">Wednesday</span><span class="time">12:00 PM – 8:00 PM</span></div>
-        <div class="hours-row open"><span class="day">Thursday</span><span class="time">12:00 PM – 8:00 PM</span></div>
-        <div class="hours-row open"><span class="day">Friday</span><span class="time">12:00 PM – 8:00 PM</span></div>
-        <div class="hours-row open"><span class="day">Saturday</span><span class="time">12:00 PM – 8:00 PM</span></div>
-        <div class="hours-row"><span class="day">Sunday</span><span class="time" style="color:var(--red)">Closed</span></div>
-      </div>
+<!-- ── BOOK NOW / THANK US LATER ── -->
+<section id="book-section">
+  <h3>Book now</h3>
+  <p>Thank us later</p>
+  <div class="tag-rows">
+    <div class="tag-row" id="tag-row-1">
+      <span class="tag-pill from-left">Name &amp; Surname</span>
+      <span class="tag-pill">Email</span>
+      <span class="tag-pill from-left">Phone number</span>
     </div>
-    <div class="reveal d2">
-      <div class="map-wrap">
-        <iframe
-          src="https://maps.google.com/maps?q=1106+Main+St+Billings+MT+59105&output=embed"
-          allowfullscreen loading="lazy"
-          title="Magic City Markers Location">
-        </iframe>
-      </div>
+    <div class="tag-row" id="tag-row-2">
+      <span class="tag-pill">Tattoo idea</span>
+      <span class="tag-pill from-left">Placement</span>
+      <span class="tag-pill">Reference photo</span>
+    </div>
+    <div class="tag-row" id="tag-row-3">
+      <span class="tag-pill from-left">Select your style</span>
+      <span class="tag-pill">Any artist in mind?</span>
     </div>
   </div>
+  <button class="btn-book open-form" style="font-size:14px;padding:4px 16px;">Book now</button>
 </section>
 
-<!-- FOOTER -->
-<footer>
+<!-- ── FOOTER / CONTACT ── -->
+<footer id="contact">
   <div class="footer-inner">
-    <div class="f-brand">
-      <a href="#" class="nav-logo" style="text-decoration:none;">
-        <div class="nav-logo-mark">MCM</div>
-        <div class="nav-logo-text">
-          <span class="top">Magic City Markers</span>
-          <span class="sub">Custom Tattoo · Billings, MT</span>
-        </div>
-      </a>
-      <p>Billings' custom tattoo studio since 2012. Walk-ins welcome. Every style, every vision, every body — welcome here.</p>
-    </div>
-    <div class="f-col">
-      <h4>Studio</h4>
-      <ul>
-        <li><a href="#gallery">Portfolio</a></li>
-        <li><a href="#styles">Tattoo Styles</a></li>
-        <li><a href="#artists">Our Artists</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#contact">Location & Hours</a></li>
-      </ul>
-    </div>
-    <div class="f-col">
+    <div class="footer-col">
       <h4>Contact</h4>
-      <ul>
-        <li><a href="tel:4063715836">(406) 371-5836</a></li>
-        <li>1106 Main St #4<br>Billings, MT 59105</li>
-        <li style="color:var(--gold);font-size:12.5px;margin-top:6px;">Tue–Sat: 12PM – 8PM</li>
-        <li><a href="https://facebook.com/MagicCityMarkers" target="_blank">Facebook Page</a></li>
-      </ul>
+      <p class="normal-case" style="max-width:240px;color:var(--grey);margin-bottom:14px;">Have questions about your project? We guide you before taking the step.</p>
+      <a href="tel:4062812990" class="normal-case">(406) 281-2990</a>
+    </div>
+    <div class="footer-col">
+      <h4>Magic City Markers — Billings</h4>
+      <a href="https://maps.google.com/?q=Magic+City+Markers+Billings+MT" target="_blank" class="normal-case" style="max-width:220px;color:var(--grey);margin-bottom:14px;">Billings, MT</a>
+      <a href="https://www.facebook.com/MagicCityMarkers" target="_blank" class="normal-case">Facebook · Magic City Markers</a>
+      <a href="https://instagram.com/tattoodaveatlivingcanvastattoo" target="_blank" class="normal-case">@tattoodaveatlivingcanvastattoo</a>
+    </div>
+    <div class="footer-col">
+      <h4>Don't think it twice</h4>
+      <button class="btn-book open-form" style="margin-bottom:10px;">Book now</button>
+      <p style="color:var(--grey);font-size:11px;text-transform:none;letter-spacing:normal;">Walk-ins welcome · Call (406) 281-2990</p>
+    </div>
+    <div class="footer-col">
+      <h4>Artists</h4>
+      <p class="normal-case" style="color:var(--grey);">Dave Johnson<br>Danny<br>Jordyn<br><br>4.7 ★ · 183 reviews</p>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 Magic City Markers · Billings, <span>MT</span></p>
-    <p>Demo site</p>
+    <p>© 2026 Magic City Markers · Billings, MT</p>
+    <a href="https://www.facebook.com/MagicCityMarkers" target="_blank">Magic City Markers on Facebook</a>
   </div>
 </footer>
 
+<!-- ── BOOKING MODAL ── -->
+<div id="form-modal">
+  <div class="form-box">
+    <button class="form-close close-form">✕</button>
+    <div class="form-h">Book a Session</div>
+    <p class="form-sub">Fill out the form and our artists will get back to you within 48 hours. Walk-ins always welcome — call (406) 281-2990.</p>
+    <form id="bform">
+      <div class="fg-row">
+        <div class="fg"><label>Name *</label><input type="text" placeholder="Your name" required/></div>
+        <div class="fg"><label>Surname</label><input type="text" placeholder="Your surname"/></div>
+      </div>
+      <div class="fg"><label>Email *</label><input type="email" placeholder="you@email.com" required/></div>
+      <div class="fg"><label>Phone number *</label><input type="tel" placeholder="(406) 000-0000" required/></div>
+      <div class="fg"><label>Instagram</label><input type="text" placeholder="@yourhandle"/></div>
+      <div class="fg"><label>Tattoo idea</label><textarea placeholder="Describe your concept, size, placement..."></textarea></div>
+      <div class="fg"><label>Placement</label><input type="text" placeholder="Arm, back, leg..."/></div>
+      <div class="fg"><label>Select your style</label>
+        <select>
+          <option value="">Select a style...</option>
+          <option>American Traditional</option>
+          <option>Black &amp; Grey</option>
+          <option>Realism</option>
+          <option>Fine Line</option>
+          <option>Color / Sleeves</option>
+          <option>Custom Work</option>
+          <option>Not sure — let's talk</option>
+        </select>
+      </div>
+      <div class="fg"><label>Any artist in mind?</label>
+        <select>
+          <option value="">Any artist...</option>
+          <option>Dave Johnson</option>
+          <option>Danny</option>
+          <option>Jordyn</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-submit">Book now</button>
+    </form>
+  </div>
+</div>
+
 <script>
-  const nav = document.getElementById('navbar');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// ── Hero slideshow ──
+let cur = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('#hero-dots .dot');
+function goSlide(n) {
+  slides[cur].style.opacity = '0';
+  dots[cur].classList.remove('active');
+  cur = n;
+  slides[cur].style.opacity = '1';
+  dots[cur].classList.add('active');
+}
+dots.forEach(d => d.addEventListener('click', () => { goSlide(+d.dataset.i); clearInterval(slideTimer); slideTimer = setInterval(autoSlide, 5000); }));
+function autoSlide() { goSlide((cur + 1) % slides.length); }
+let slideTimer = setInterval(autoSlide, 5000);
+
+// ── Header hide on scroll-down ──
+let prevY = 0;
+const hdr = document.getElementById('main-header');
+const flt = document.getElementById('float-cta');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const dn = y > prevY && y > 80;
+  hdr.style.transform = dn ? 'translateY(-100%)' : '';
+  if (y > 300) { dn ? flt.classList.add('show') : flt.classList.remove('show'); }
+  else flt.classList.remove('show');
+  prevY = y;
+}, {passive: true});
+
+// ── Studio clock (Billings = Mountain Time) ──
+const clk = document.getElementById('clock');
+function tick() {
+  const t = new Date().toLocaleTimeString('en-US', {timeZone:'America/Denver', hour:'numeric', minute:'2-digit', hour12:true});
+  if (clk) clk.textContent = t + ' · MT';
+}
+tick(); setInterval(tick, 10000);
+
+// ── Artist carousel auto-advance ──
+document.querySelectorAll('.acard').forEach(card => {
+  const car = card.querySelector('.acard-carousel');
+  const fill = card.querySelector('.acard-bar-fill');
+  if (!car) return;
+  const n = car.querySelectorAll('img').length;
+  let timer, idx = 0;
+  car.addEventListener('scroll', () => {
+    const pct = car.scrollLeft / (car.scrollWidth - car.clientWidth || 1);
+    const frame = Math.round(pct * (n - 1));
+    if (fill) fill.style.width = ((frame + 1) / n * 100) + '%';
+  }, {passive:true});
+  card.addEventListener('mouseenter', () => {
+    timer = setInterval(() => {
+      idx = (idx + 1) % n;
+      car.scrollTo({left: idx * car.clientWidth, behavior: 'smooth'});
+    }, 900);
+  });
+  card.addEventListener('mouseleave', () => {
+    clearInterval(timer); idx = 0;
+    car.scrollTo({left: 0, behavior: 'smooth'});
+    if (fill) fill.style.width = '25%';
+  });
+});
+
+// ── Styles track drag scroll ──
+const track = document.querySelector('.styles-track');
+if (track) {
+  let down = false, startX, scrollLeft;
+  track.addEventListener('mousedown', e => { down = true; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; track.style.cursor='grabbing'; });
+  track.addEventListener('mouseleave', () => { down = false; track.style.cursor='grab'; });
+  track.addEventListener('mouseup', () => { down = false; track.style.cursor='grab'; });
+  track.addEventListener('mousemove', e => { if (!down) return; e.preventDefault(); const x = e.pageX - track.offsetLeft; track.scrollLeft = scrollLeft - (x - startX); });
+}
+
+// ── Tag pills animation ──
+const tagObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const pills = entry.target.querySelectorAll('.tag-pill');
+      pills.forEach((pill, i) => {
+        setTimeout(() => pill.classList.add('visible'), i * 120);
+      });
+    }
+  });
+}, {threshold: 0.3});
+document.querySelector('#book-section') && tagObs.observe(document.querySelector('#book-section'));
+
+// ── Modal ──
+const modal = document.getElementById('form-modal');
+function openForm()  { modal.classList.add('open');    document.body.style.overflow = 'hidden'; }
+function closeForm() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+document.querySelectorAll('.open-form').forEach(b => b.addEventListener('click', openForm));
+document.querySelectorAll('.close-form').forEach(b => b.addEventListener('click', closeForm));
+modal.addEventListener('click', e => { if (e.target === modal) closeForm(); });
+document.getElementById('bform').addEventListener('submit', e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit');
+  btn.textContent = '✓ Request Sent!';
+  setTimeout(() => { btn.textContent = 'Book now'; closeForm(); e.target.reset(); }, 2500);
+});
+
+// ── Mobile menu ──
+const ham = document.getElementById('ham-btn');
+const mob = document.getElementById('mob-menu');
+const lines = document.querySelectorAll('.ham-line');
+let mOpen = false;
+ham.addEventListener('click', () => {
+  mOpen = !mOpen;
+  mob.classList.toggle('open', mOpen);
+  lines[0].style.transform = mOpen ? 'rotate(45deg) translate(4px,5px)' : '';
+  lines[1].style.opacity   = mOpen ? '0' : '';
+  lines[2].style.transform = mOpen ? 'rotate(-45deg) translate(4px,-5px)' : '';
+  document.body.style.overflow = mOpen ? 'hidden' : '';
+});
+function closeMob() {
+  mOpen = false; mob.classList.remove('open');
+  lines[0].style.transform = lines[2].style.transform = '';
+  lines[1].style.opacity = '';
+  document.body.style.overflow = '';
+}
+
+// ── Filter buttons ──
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
 </script>
 </body>
 </html>
