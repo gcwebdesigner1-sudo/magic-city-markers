@@ -6,6 +6,7 @@
   <title>Magic City Markers — Billings, MT</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Antonio ≈ Aro (Ganga display font) | Inter ≈ NB International Pro CG (Ganga body font) -->
   <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,9 +38,11 @@
 
     a { color: inherit; text-decoration: none; }
 
+    /* ── FONTS ── */
     .font-aro { font-family: 'Antonio', sans-serif; }
     .normal-case { text-transform: none; letter-spacing: normal; }
 
+    /* ── BOOK NOW BUTTON — exact Ganga spec ── */
     .btn-book {
       display: inline-flex;
       align-items: center;
@@ -60,6 +63,7 @@
     }
     .btn-book:hover { background: rgba(240,240,240,0.30); }
 
+    /* ── FIXED HEADER ── */
     #main-header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -69,10 +73,11 @@
     .header-gradient {
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 208px;
+      height: 208px; /* h-52 */
       background: linear-gradient(to bottom, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.30) 40%, transparent 100%);
       pointer-events: none;
     }
+    /* Desktop nav — hidden on mobile */
     .header-desktop {
       display: flex;
       justify-content: space-between;
@@ -81,7 +86,9 @@
       position: relative;
     }
     .header-logo-spacer { visibility: hidden; }
-    .header-logo-spacer, .header-logo-text { width: 200px; }
+    .header-logo-spacer img, .header-logo-text { width: 112px; }
+    .brand-logo { font-size: 1.1rem; white-space: nowrap; }
+    @media (max-width: 1280px) { #fixed-logo { display: none; } }
     .header-logo-text {
       font-family: 'Antonio', sans-serif;
       font-size: 1.1rem;
@@ -105,6 +112,7 @@
     .header-nav a:hover { opacity: 0.6; }
     #clock { font-size: 14px; color: var(--offWhite); }
 
+    /* Hamburger — mobile only */
     #ham-btn {
       display: none;
       position: fixed;
@@ -151,7 +159,7 @@
       transition: background 0.3s ease;
     }
     #header-phone a:hover { background: rgba(240,240,240,0.30); }
-
+    /* Mobile menu */
     #mob-menu {
       display: none;
       position: fixed; inset: 0;
@@ -166,6 +174,7 @@
     #mob-menu ul { list-style: none; display: flex; flex-direction: column; align-items: center; gap: 16px; }
     #mob-menu ul a { font-size: 1.1rem; color: var(--offWhite); letter-spacing: 0.1em; padding: 10px 28px; background: rgba(255,255,255,0.06); border-radius: 8px; display: block; }
 
+    /* Floating CTA */
     #float-cta {
       position: fixed; bottom: 28px; right: 28px;
       z-index: 100; opacity: 0; transform: translateY(70px);
@@ -174,6 +183,7 @@
     }
     #float-cta.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
+    /* ── HERO ── */
     #hero {
       position: relative;
       width: 100%;
@@ -186,11 +196,13 @@
       object-fit: cover;
       transition: opacity 0.7s ease-in-out;
     }
+    /* Ganga's exact gradient: from-black/85 to-90% */
     .hero-veil {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 90%);
       z-index: 1; pointer-events: none;
     }
+    /* Dots — bottom-42 (168px) desktop, bottom-60 (240px) md */
     #hero-dots {
       position: absolute;
       bottom: 168px; left: 50%;
@@ -206,6 +218,7 @@
       transition: all 0.3s;
     }
     .dot.active { background: #fff; transform: scale(1.4); }
+    /* Hero title — large at bottom, Antonio ≈ Aro */
     .hero-title-wrap {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -216,7 +229,7 @@
     .hero-title-main {
       display: block;
       font-family: 'Antonio', sans-serif;
-      font-size: clamp(3rem, 10vw, 11rem);
+      font-size: clamp(5rem, 16vw, 15rem);
       font-weight: 400;
       color: var(--offWhite);
       line-height: 0.82;
@@ -224,6 +237,7 @@
       text-transform: uppercase;
     }
 
+    /* ── SECTION SHARED STYLES ── */
     .section-h2 {
       font-family: 'Antonio', sans-serif;
       font-size: clamp(1.4rem, 5vw, 2.5rem);
@@ -248,6 +262,7 @@
       margin-right: auto;
     }
 
+    /* color-blur decorative blob (mimics Ganga's color-blur.webp) */
     .color-blur {
       position: absolute;
       pointer-events: none;
@@ -260,6 +275,7 @@
       opacity: 0.5;
     }
 
+    /* ── ARTISTS SECTION ── */
     #artists {
       width: 100%;
       display: flex;
@@ -291,6 +307,7 @@
     }
     .filter-btn:hover, .filter-btn.active { background: rgba(240,240,240,0.22); }
 
+    /* Artist grid */
     #artists-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -299,6 +316,7 @@
       position: relative;
       z-index: 1;
     }
+    /* Artist card */
     .acard {
       display: block;
       text-decoration: none;
@@ -322,6 +340,7 @@
       pointer-events: none;
       -webkit-user-drag: none;
     }
+    /* "Tap to discover" */
     .acard-tap {
       position: absolute;
       top: 0; left: 0; right: 0;
@@ -335,6 +354,7 @@
     }
     .acard-tap p { font-size: 11px; color: rgba(255,255,255,0.80); letter-spacing: 1.12px; }
     .acard:hover .acard-tap { opacity: 1; }
+    /* Progress bar */
     .acard-bar {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -348,6 +368,7 @@
       width: 25%;
       transition: width 0.25s ease;
     }
+    /* Artist info */
     .acard-info {
       padding: 10px 8px 20px;
       text-align: center;
@@ -368,15 +389,11 @@
       line-height: 0.9;
       color: var(--offWhite);
     }
-    .acard-ig {
-      font-size: 10px;
-      color: var(--grey);
-      letter-spacing: 0.5px;
-      text-transform: none;
-      margin-top: 4px;
-      display: block;
-    }
+    /* Coming soon ghost */
+    .acard-ghost { opacity: 0.20; pointer-events: none; }
+    .ghost-img { aspect-ratio: 4/5; background: #222; }
 
+    /* Show more artists link */
     #show-more {
       margin-top: 24px;
       padding-bottom: 60px;
@@ -396,6 +413,7 @@
     #show-more a span:first-child { font-family: 'Antonio', sans-serif; font-size: 1.1rem; }
     #show-more a:hover { opacity: 0.7; }
 
+    /* ── "THINKING ABOUT YOUR NEXT TATTOO?" CTA ── */
     #cta-mid {
       width: 100%;
       height: 55vh;
@@ -436,6 +454,7 @@
       filter: brightness(0.22);
     }
 
+    /* ── STYLES SECTION ── */
     #styles {
       width: 100%;
       display: flex;
@@ -503,6 +522,7 @@
       font-weight: 300;
     }
 
+    /* ── BOOK NOW / THANK US LATER SECTION ── */
     #book-section {
       width: 100%;
       display: flex;
@@ -533,6 +553,7 @@
       text-align: center;
       margin-bottom: 32px;
     }
+    /* Animated form tag rows */
     .tag-rows {
       width: 100%;
       display: flex;
@@ -542,7 +563,11 @@
       margin-bottom: 36px;
       overflow: hidden;
     }
-    .tag-row { display: flex; gap: 10px; flex-wrap: nowrap; }
+    .tag-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: nowrap;
+    }
     .tag-pill {
       background: var(--brown);
       color: var(--fair);
@@ -559,6 +584,7 @@
     .tag-pill.from-left { transform: translateX(-60px); }
     .tag-pill.visible { opacity: 1; transform: translateX(0); }
 
+    /* ── CONTACT / FOOTER ── */
     footer {
       border-top: 1px solid rgba(240,240,240,0.08);
       padding: 48px 28px;
@@ -608,6 +634,7 @@
       letter-spacing: normal;
     }
 
+    /* ── BOOKING MODAL ── */
     #form-modal {
       position: fixed; inset: 0;
       z-index: 200;
@@ -686,6 +713,7 @@
     }
     .btn-submit:hover { background: rgba(240,240,240,0.18); }
 
+    /* ── RESPONSIVE ── */
     @media (max-width: 1280px) {
       .header-desktop { display: none !important; }
       #ham-btn { display: flex; }
@@ -699,18 +727,18 @@
       #artists-grid { grid-template-columns: repeat(2, 1fr); }
       .section-p { max-width: 90%; }
       .fg-row { grid-template-columns: 1fr; }
-      .hero-title-main { font-size: clamp(2rem, 13vw, 4rem); }
+      .hero-title-main { font-size: clamp(3rem, 18vw, 5rem); }
     }
   </style>
 </head>
 <body>
 
-<!-- ── FIXED LOGO ── -->
-<div style="position:fixed;top:28px;left:28px;z-index:110;">
-  <a href="#" style="font-family:'Antonio',sans-serif;font-size:1.1rem;font-weight:500;letter-spacing:0.18em;color:var(--offWhite);">MAGIC CITY MARKERS</a>
+<!-- ── FIXED LOGO (top-left, invisible spacer mirrors) ── -->
+<div id="fixed-logo" style="position:fixed;top:28px;left:28px;z-index:110;">
+  <a href="#" class="brand-logo" style="font-family:'Antonio',sans-serif;font-weight:500;letter-spacing:0.1em;color:var(--offWhite);">MAGIC CITY MARKERS</a>
 </div>
 
-<!-- ── PHONE ── -->
+<!-- ── PHONE (always visible, top-right) ── -->
 <div id="header-phone"><a href="tel:4062812990">(406) 281-2990</a></div>
 
 <!-- ── MOBILE ELEMENTS ── -->
@@ -736,7 +764,9 @@
 <header id="main-header">
   <div class="header-gradient"></div>
   <div class="header-desktop">
-    <span class="header-logo-spacer" style="font-family:'Antonio',sans-serif;font-size:1.1rem;font-weight:500;letter-spacing:0.18em;">MAGIC CITY MARKERS</span>
+    <!-- invisible spacer to center the nav (mirrors the logo) -->
+    <span class="header-logo-spacer brand-logo" style="font-family:'Antonio',sans-serif;font-weight:500;letter-spacing:0.1em;white-space:nowrap;">MAGIC CITY MARKERS</span>
+    <!-- spacer mirrors single-line desktop logo; actual logo wraps on mobile only -->
     <ul class="header-nav">
       <li><a href="#artists">Artists</a></li>
       <li><a href="#styles">Styles</a></li>
@@ -755,7 +785,7 @@
 
 <!-- ── HERO ── -->
 <section id="hero">
-  <h1 style="position:absolute;z-index:-1000;color:transparent;">Magic City Markers Tattoo Billings Montana</h1>
+  <h1 style="position:absolute;z-index:-1000;color:transparent;">Magic City Markers Billings Montana</h1>
   <div class="hero-veil"></div>
   <img data-slide="0" class="hero-slide" style="opacity:1;"
        src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=1900&q=90&fit=crop" alt=""/>
@@ -778,7 +808,7 @@
     <button class="dot" data-i="5"></button>
   </div>
   <div class="hero-title-wrap">
-    <span class="hero-title-main">Magic City Markers</span>
+    <span class="hero-title-main" style="font-size:clamp(2.5rem,7vw,8rem);">Magic City Markers</span>
   </div>
 </section>
 
@@ -786,7 +816,7 @@
 <section id="artists">
   <div class="color-blur" style="top:40%;left:50%;transform:translate(-50%,-55%) rotate(45deg);"></div>
   <h2 class="section-h2">Meet our artists</h2>
-  <p class="section-p">Custom tattoo work crafted with precision and passion in Billings, Montana. Walk-ins welcome.</p>
+  <p class="section-p">Custom tattoo work crafted with precision and passion in Billings, Montana. Walk-ins welcome — flash from $10.</p>
 
   <div id="artists-filter">
     <button class="filter-btn active">All</button>
@@ -805,7 +835,7 @@
           <img src="https://images.unsplash.com/photo-1552627019-947c3789ffb5?w=600&q=85&fit=crop" alt="Dave Johnson tattoo"/>
           <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=600&q=85&fit=crop" alt="Dave Johnson tattoo"/>
           <img src="https://images.unsplash.com/photo-1564426622559-5af68da63b96?w=600&q=85&fit=crop" alt="Dave Johnson tattoo"/>
-          <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85&fit=crop" alt="Dave Johnson tattoo"/>
+          <img src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=600&q=85&fit=crop" alt="Dave Johnson tattoo"/>
         </div>
         <div class="acard-tap"><p>Tap to discover</p></div>
         <div class="acard-bar"><div class="acard-bar-fill"></div></div>
@@ -813,7 +843,6 @@
       <div class="acard-info">
         <p class="acard-style">Realism · Fine Line · Custom</p>
         <h3 class="acard-name">Dave Johnson</h3>
-        <span class="acard-ig">@tattoodaveatlivingcanvastattoo</span>
       </div>
     </a>
     <!-- Danny -->
@@ -821,9 +850,9 @@
       <div class="acard-carousel-wrap">
         <div class="acard-carousel">
           <img src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=600&q=85&fit=crop" alt="Danny tattoo"/>
-          <img src="https://images.unsplash.com/photo-1597852075234-fd721ac361d3?w=600&q=85&fit=crop" alt="Danny tattoo"/>
-          <img src="https://images.unsplash.com/photo-1552627019-947c3789ffb5?w=600&q=85&fit=crop" alt="Danny tattoo"/>
           <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85&fit=crop" alt="Danny tattoo"/>
+          <img src="https://images.unsplash.com/photo-1597852075234-fd721ac361d3?w=600&q=85&fit=crop" alt="Danny tattoo"/>
+          <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=600&q=85&fit=crop" alt="Danny tattoo"/>
         </div>
         <div class="acard-tap"><p>Tap to discover</p></div>
         <div class="acard-bar"><div class="acard-bar-fill"></div></div>
@@ -831,17 +860,16 @@
       <div class="acard-info">
         <p class="acard-style">Traditional · Black &amp; Grey · Custom</p>
         <h3 class="acard-name">Danny</h3>
-        <span class="acard-ig">View work on Facebook</span>
       </div>
     </a>
     <!-- Jordyn -->
     <a class="acard" href="https://www.facebook.com/MagicCityMarkers" target="_blank">
       <div class="acard-carousel-wrap">
         <div class="acard-carousel">
-          <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=600&q=85&fit=crop" alt="Jordyn tattoo"/>
           <img src="https://images.unsplash.com/photo-1564426622559-5af68da63b96?w=600&q=85&fit=crop" alt="Jordyn tattoo"/>
-          <img src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=600&q=85&fit=crop" alt="Jordyn tattoo"/>
           <img src="https://images.unsplash.com/photo-1597852075234-fd721ac361d3?w=600&q=85&fit=crop" alt="Jordyn tattoo"/>
+          <img src="https://images.unsplash.com/photo-1552627019-947c3789ffb5?w=600&q=85&fit=crop" alt="Jordyn tattoo"/>
+          <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85&fit=crop" alt="Jordyn tattoo"/>
         </div>
         <div class="acard-tap"><p>Tap to discover</p></div>
         <div class="acard-bar"><div class="acard-bar-fill"></div></div>
@@ -849,15 +877,14 @@
       <div class="acard-info">
         <p class="acard-style">Color · Sleeve Work · Illustrative</p>
         <h3 class="acard-name">Jordyn</h3>
-        <span class="acard-ig">View work on Facebook</span>
       </div>
     </a>
   </div>
 
   <div id="show-more">
-    <a href="https://instagram.com/tattoodaveatlivingcanvastattoo" target="_blank">
+    <a href="https://www.facebook.com/MagicCityMarkers" target="_blank">
       <span>See more work</span>
-      <span style="color:var(--grey);font-size:11px;">@tattoodaveatlivingcanvastattoo on Instagram</span>
+      <span style="color:var(--grey);font-size:11px;">Magic City Markers on Facebook</span>
     </a>
   </div>
 </section>
@@ -892,11 +919,20 @@
       <div class="scard-top"><span class="scard-tap">Tap to explore</span></div>
       <div class="scard-content">
         <div class="scard-name">Black &amp; Grey</div>
-        <p class="scard-desc">Deep shading and stunning contrast — perfect for timeless, powerful pieces.</p>
+        <p class="scard-desc">Black and grey tattoos with deep shading and stunning contrast, perfect for timeless pieces.</p>
       </div>
     </div>
     <div class="scard">
       <img class="scard-bg" src="https://images.unsplash.com/photo-1597852075234-fd721ac361d3?w=700&q=85&fit=crop" alt=""/>
+      <div class="scard-overlay"></div>
+      <div class="scard-top"><span class="scard-tap">Tap to explore</span></div>
+      <div class="scard-content">
+        <div class="scard-name">Neo-Traditional</div>
+        <p class="scard-desc">Classic motifs reimagined with modern illustration and rich color palettes.</p>
+      </div>
+    </div>
+    <div class="scard">
+      <img class="scard-bg" src="https://images.unsplash.com/photo-1605647533135-51b5906087d0?w=700&q=85&fit=crop" alt=""/>
       <div class="scard-overlay"></div>
       <div class="scard-top"><span class="scard-tap">Tap to explore</span></div>
       <div class="scard-content">
@@ -905,30 +941,21 @@
       </div>
     </div>
     <div class="scard">
-      <img class="scard-bg" src="https://images.unsplash.com/photo-1605647533135-51b5906087d0?w=700&q=85&fit=crop" alt=""/>
-      <div class="scard-overlay"></div>
-      <div class="scard-top"><span class="scard-tap">Tap to explore</span></div>
-      <div class="scard-content">
-        <div class="scard-name">Fine Line</div>
-        <p class="scard-desc">Delicate, precise linework for intricate designs that stand the test of time.</p>
-      </div>
-    </div>
-    <div class="scard">
       <img class="scard-bg" src="https://images.unsplash.com/photo-1552627019-947c3789ffb5?w=700&q=85&fit=crop" alt=""/>
       <div class="scard-overlay"></div>
       <div class="scard-top"><span class="scard-tap">Tap to explore</span></div>
       <div class="scard-content">
-        <div class="scard-name">Color &amp; Sleeves</div>
-        <p class="scard-desc">Vibrant, full-color pieces and ambitious sleeve projects that turn heads.</p>
+        <div class="scard-name">Illustrative</div>
+        <p class="scard-desc">Detailed linework and custom illustration pieces with personality and depth.</p>
       </div>
     </div>
     <div class="scard">
-      <img class="scard-bg" src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=700&q=85&fit=crop" alt=""/>
+      <img class="scard-bg" src="https://images.unsplash.com/photo-1605647533135-51b5906087d0?w=700&q=85&fit=crop" alt=""/>
       <div class="scard-overlay"></div>
       <div class="scard-top"><span class="scard-tap">Tap to explore</span></div>
       <div class="scard-content">
-        <div class="scard-name">Custom Work</div>
-        <p class="scard-desc">Bring your concept and our artists will build something made only for you.</p>
+        <div class="scard-name">Custom Flash</div>
+        <p class="scard-desc">Walk in, pick a design, walk out tattooed. Flash sheets from $10. No appointment needed.</p>
       </div>
     </div>
   </div>
@@ -937,8 +964,8 @@
 <!-- ── GALLERY ── -->
 <section id="gallery" style="width:100%;padding:80px 0 40px;display:flex;flex-direction:column;align-items:center;">
   <h2 class="section-h2" style="padding:0 28px;">The Work</h2>
-  <p class="section-p">Recent pieces from the Magic City Markers crew. See more on Facebook &amp; Instagram.</p>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;width:100%;margin-top:24px;">
+  <p class="section-p">Recent pieces by Dave, Danny &amp; Jordyn. See more on Facebook.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;width:100%;margin-top:24px;" id="gallery-grid">
     <div style="overflow:hidden;aspect-ratio:1;"><img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=700&q=85&fit=crop" style="width:100%;height:100%;object-fit:cover;transition:transform 0.55s ease,filter 0.4s;filter:grayscale(10%);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='none'" onmouseout="this.style.transform='';this.style.filter='grayscale(10%)'"/></div>
     <div style="overflow:hidden;aspect-ratio:1;"><img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=700&q=85&fit=crop" style="width:100%;height:100%;object-fit:cover;transition:transform 0.55s ease,filter 0.4s;filter:grayscale(10%);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='none'" onmouseout="this.style.transform='';this.style.filter='grayscale(10%)'"/></div>
     <div style="overflow:hidden;aspect-ratio:1;"><img src="https://images.unsplash.com/photo-1564426622559-5af68da63b96?w=700&q=85&fit=crop" style="width:100%;height:100%;object-fit:cover;transition:transform 0.55s ease,filter 0.4s;filter:grayscale(10%);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='none'" onmouseout="this.style.transform='';this.style.filter='grayscale(10%)'"/></div>
@@ -983,24 +1010,24 @@
       <a href="tel:4062812990" class="normal-case">(406) 281-2990</a>
     </div>
     <div class="footer-col">
-      <h4>Magic City Markers — Billings</h4>
-      <a href="https://maps.google.com/?q=Magic+City+Markers+Billings+MT" target="_blank" class="normal-case" style="max-width:220px;color:var(--grey);margin-bottom:14px;">Billings, MT</a>
-      <a href="https://www.facebook.com/MagicCityMarkers" target="_blank" class="normal-case">Facebook · Magic City Markers</a>
+      <h4>Magic City Markers — Billings, MT</h4>
+      <a href="https://www.facebook.com/MagicCityMarkers" target="_blank" class="normal-case" style="max-width:220px;color:var(--grey);margin-bottom:14px;">Billings, Montana</a>
+      <a href="https://www.facebook.com/MagicCityMarkers" target="_blank" class="normal-case">Facebook</a>
       <a href="https://instagram.com/tattoodaveatlivingcanvastattoo" target="_blank" class="normal-case">@tattoodaveatlivingcanvastattoo</a>
     </div>
     <div class="footer-col">
       <h4>Don't think it twice</h4>
       <button class="btn-book open-form" style="margin-bottom:10px;">Book now</button>
-      <p style="color:var(--grey);font-size:11px;text-transform:none;letter-spacing:normal;">Walk-ins welcome · Call (406) 281-2990</p>
+      <p style="color:var(--grey);font-size:11px;text-transform:none;letter-spacing:normal;">Walk-ins welcome</p>
     </div>
     <div class="footer-col">
       <h4>Artists</h4>
-      <p class="normal-case" style="color:var(--grey);">Dave Johnson<br>Danny<br>Jordyn<br><br>4.7 ★ · 183 reviews</p>
+      <p class="normal-case" style="color:var(--grey);">Dave Johnson<br>Danny<br>Jordyn<br><br>★ 4.7 · 183 reviews</p>
     </div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 Magic City Markers · Billings, MT</p>
-    <a href="https://www.facebook.com/MagicCityMarkers" target="_blank">Magic City Markers on Facebook</a>
+    <a href="https://www.facebook.com/MagicCityMarkers" target="_blank">Facebook</a>
   </div>
 </footer>
 
@@ -1009,7 +1036,7 @@
   <div class="form-box">
     <button class="form-close close-form">✕</button>
     <div class="form-h">Book a Session</div>
-    <p class="form-sub">Fill out the form and our artists will get back to you within 48 hours. Walk-ins always welcome — call (406) 281-2990.</p>
+    <p class="form-sub">Fill out the form and we'll get back to you within 48 hours. Walk-ins always welcome.</p>
     <form id="bform">
       <div class="fg-row">
         <div class="fg"><label>Name *</label><input type="text" placeholder="Your name" required/></div>
@@ -1025,10 +1052,10 @@
           <option value="">Select a style...</option>
           <option>American Traditional</option>
           <option>Black &amp; Grey</option>
+          <option>Neo-Traditional</option>
           <option>Realism</option>
-          <option>Fine Line</option>
-          <option>Color / Sleeves</option>
-          <option>Custom Work</option>
+          <option>Illustrative</option>
+          <option>Custom Flash</option>
           <option>Not sure — let's talk</option>
         </select>
       </div>
@@ -1117,7 +1144,7 @@ if (track) {
   track.addEventListener('mousemove', e => { if (!down) return; e.preventDefault(); const x = e.pageX - track.offsetLeft; track.scrollLeft = scrollLeft - (x - startX); });
 }
 
-// ── Tag pills animation ──
+// ── Tag pills animation on scroll ──
 const tagObs = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1164,7 +1191,7 @@ function closeMob() {
   document.body.style.overflow = '';
 }
 
-// ── Filter buttons ──
+// ── Filter buttons (cosmetic for now) ──
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
